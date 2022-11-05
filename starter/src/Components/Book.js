@@ -1,15 +1,12 @@
 import { useState } from "react";
 
 const Book = ({ book, moveToShelf }) => {
-  // const [select, setSelect] = useState(book.shelf);
-
   const handleChange = (e) => {
     const targetShelf = e.target.value;
     console.log("moving a book to", targetShelf, book);
     moveToShelf(book, targetShelf);
   };
 
-  // console.log(book);
   return (
     <div className="book">
       <div className="book-top">

@@ -17,10 +17,7 @@ function App() {
   }, []);
 
   const moveToShelf = async (book, targetShelf) => {
-    // console.log("book", book);
-    // console.log("targetShelf", targetShelf);
     const response = await update(book, targetShelf);
-    // console.log(response);
     setAllBooks((books) => {
       const newBooks = books.map((b) => {
         if (b.id !== book.id) {
@@ -86,8 +83,6 @@ function App() {
       return book.shelf === "read";
     });
   };
-
-  // console.log(currentlyReading, wantToRead, read);
 
   return (
     <div className="app">
