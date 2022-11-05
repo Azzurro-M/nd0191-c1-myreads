@@ -66,23 +66,17 @@ function App() {
     }
   };
 
-  const [currentlyReading, setCurrentlyReading] = useState([]);
-  const [wantToRead, setWantToRead] = useState([]);
-  const [read, setRead] = useState([]);
+  const currentlyReading = allBooks.filter((book) => {
+    return book.shelf === "currentlyReading";
+  });
 
-  const updateAllBooks = () => {
-    const currentlyReading = allBooks.filter((book) => {
-      return book.shelf === "currentlyReading";
-    });
+  const wantToRead = allBooks.filter((book) => {
+    return book.shelf === "wantToRead";
+  });
 
-    const wantToRead = allBooks.filter((book) => {
-      return book.shelf === "wantToRead";
-    });
-
-    const read = allBooks.filter((book) => {
-      return book.shelf === "read";
-    });
-  };
+  const read = allBooks.filter((book) => {
+    return book.shelf === "read";
+  });
 
   return (
     <div className="app">
