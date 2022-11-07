@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Book = ({ book, moveToShelf }) => {
+  const { title, authors, imageLinks } = book;
   const handleChange = (e) => {
     const targetShelf = e.target.value;
     console.log("moving a book to", targetShelf, book);
@@ -15,7 +16,7 @@ const Book = ({ book, moveToShelf }) => {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${book.imageLinks?.thumbnail})`,
+            backgroundImage: imageLinks ? `url(${imageLinks.thumbnail})` : "",
           }}
         ></div>
         <div className="book-shelf-changer">
@@ -28,8 +29,8 @@ const Book = ({ book, moveToShelf }) => {
           </select>
         </div>
       </div>
-      <div className="book-title">{book.title}</div>
-      <div className="book-authors">{book.authors}</div>
+      <div className="book-title">{title}</div>
+      <div className="book-authors">{authors}</div>
     </div>
   );
 };

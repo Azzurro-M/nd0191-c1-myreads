@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Book from "./Components/Book";
 import { get, getAll, update, search } from "./BooksAPI";
+import MainShelf from "./Components/MainShelf";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
@@ -66,18 +67,6 @@ function App() {
     }
   };
 
-  const currentlyReading = allBooks.filter((book) => {
-    return book.shelf === "currentlyReading";
-  });
-
-  const wantToRead = allBooks.filter((book) => {
-    return book.shelf === "wantToRead";
-  });
-
-  const read = allBooks.filter((book) => {
-    return book.shelf === "read";
-  });
-
   return (
     <div className="app">
       {showSearchPage ? (
@@ -115,42 +104,7 @@ function App() {
           </div>
           <div className="list-books-content">
             <div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Currently Reading</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {currentlyReading.map((book) => (
-                      <li key={book.id}>
-                        <Book moveToShelf={moveToShelf} book={book} />
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Want to Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {wantToRead.map((book) => (
-                      <li key={book.id}>
-                        <Book moveToShelf={moveToShelf} book={book} />
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
-              <div className="bookshelf">
-                <h2 className="bookshelf-title">Read</h2>
-                <div className="bookshelf-books">
-                  <ol className="books-grid">
-                    {read.map((book) => (
-                      <li key={book.id}>
-                        <Book moveToShelf={moveToShelf} book={book} />
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
+              <MainShelf allBooks={allBooks} moveToShelf={moveToShelf} />
             </div>
           </div>
           <div className="open-search">
